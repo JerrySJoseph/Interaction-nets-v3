@@ -22,9 +22,7 @@ const AppLayout2=({children}:AppLayoutProps)=>{
       }}
       
       navbarOffsetBreakpoint="lg"
-      navbar={
-        <NavbarLeft pl="xs" hiddenBreakpoint="lg" hidden={!opened} width={{ sm: 200, lg: 300 }}/>
-      }
+      
       footer={
        <Footer height={60} p="md"/>
       }

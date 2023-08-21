@@ -18,17 +18,18 @@
   position: relative;
   border: solid 1px white;
 }
-.level{
-  display:'flex';
+
+.level {
+  display: 'flex';
   justify-content: center;
   width: 100%;
   border: solid 1px yellow;
 }
 
-.node{
+.node {
   min-width: 50px;
   min-height: 50px;
-  border-radius: 50%;
+
   color: black;
   font-size: large;
   border: solid 3px white;
@@ -36,6 +37,34 @@
   position: absolute;
   align-items: center;
   justify-content: center;
+  z-index: 2;
+}
+
+.node-operator {
+  border-radius: 50%;
+  background-color: coral;
+}
+
+.node-constant {
+  border-radius: 10px;
+  background-color: darkorange
+}
+
+.link {
+  position: 'absolute';
+  top: 0;
+  left: 0;
+  width: '100%';
+  height: '100%';
+  z-index: 1;
+}
+
+.control-panel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  
 }
 
 .draggable {

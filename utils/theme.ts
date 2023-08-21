@@ -1,7 +1,7 @@
 import { MantineThemeOverride } from "@mantine/core";
 
 const customTheme:MantineThemeOverride={
-    defaultRadius:'xl',
+    defaultRadius:'md',
     primaryColor:'yellow',
     primaryShade:6
 }

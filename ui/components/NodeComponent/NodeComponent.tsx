@@ -5,19 +5,20 @@ import LinkComponent from '../LineComponent/LinkComponent';
 
 interface NodeComponentProps {
     node: INode,
+    posx:number,
+    posy:number,
+    onNodeClicked:(node:INode)=>any
     onMove: (posX: number, posY: number,nodeId:string) => any
 }
 
 const NodeComponent = (props: NodeComponentProps) => {
 
-    const { node, onMove } = props;
-    const [x, setX] = useState<number>(node.x);
-    const [y, setY] = useState<number>(node.y);
+    const { node, onMove ,posx,posy,onNodeClicked} = props;
+    const [x, setX] = useState<number>(posx);
+    const [y, setY] = useState<number>(posy);
 
     const [isDragging, setIsDragging] = useState(false);
     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-
-
 
     const handleMouseDown = useCallback((e: MouseEvent) => {
         setIsDragging(true);
@@ -53,21 +54,20 @@ const NodeComponent = (props: NodeComponentProps) => {
         };
     }, [handleMouseMove, handleMouseUp]);
 
-    const getFillColor = () => {
+    const getClass = () => {
         if (node.type === 'Constant')
-            return 'lightblue';
+            return 'node-constant';
         else if (node.type === 'Operator')
-            return 'lightgreen';
+            return 'node-operator';
         else
-            return 'yellow';
+            return '';
     }
 
     return (
         <Draggable x={x} y={y} onDrage={(x,y)=>onMove(x, y,props.node.id)}>
-            <div className="node" style={{backgroundColor:getFillColor()}}>
+            <div className={`node ${getClass()}`}  onClick={()=>onNodeClicked(node)}>
                 {node.value && node.value}
             </div>
-            
         </Draggable>
 
     );

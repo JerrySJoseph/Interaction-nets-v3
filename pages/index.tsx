@@ -1,15 +1,20 @@
 import type { NextPage } from 'next'
 import { Card, Grid } from '@mantine/core'
-import Canvas from '../ui/components/canvas/Canvas'
+import CanvasEditor from '../ui/components/canvas/CanvasEditor'
+import ControlPanel from '../ui/components/ControlPanel/ControlPanel'
+import CanvasResult from '../ui/components/canvas/CanvasResult'
 
 const Home: NextPage = () => {
   return (
     <Grid style={{height:'100%'}}>
-      <Grid.Col span={8}>
-       <Canvas/>
+      <Grid.Col span={5}>
+       <CanvasEditor/>
       </Grid.Col>
-      <Grid.Col span={4} style={{height:'100%'}}>
-        
+      <Grid.Col span={2}>
+        <ControlPanel/>
+      </Grid.Col>
+      <Grid.Col span={5}>
+        <CanvasResult/>
       </Grid.Col>
     </Grid>
   )

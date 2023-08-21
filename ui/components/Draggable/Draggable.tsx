@@ -30,6 +30,7 @@ const Draggable = ({ children, x, y, onDragEnd, onDragStart,onDrage }: Draggable
                 y: e.clientY - dragStartPos.current.y,
             });
             onDrage && onDrage(e.clientX - dragStartPos.current.x,e.clientY - dragStartPos.current.y)
+            
         }
         
     };
@@ -37,6 +38,7 @@ const Draggable = ({ children, x, y, onDragEnd, onDragStart,onDrage }: Draggable
     const handleMouseUp = () => {
         setDragging(false);
         onDragEnd && onDragEnd(position.x, position.y)
+        
     };
 
     React.useEffect(() => {

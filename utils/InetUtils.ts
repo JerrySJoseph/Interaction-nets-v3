@@ -14,7 +14,7 @@ export function reduceInet(iNet: INet): [INet,string[],string[]] {
     for (let node of iNetClone.nodes) {
 
         //if we find any operator node in the interactio net
-        if (node.type === 'Operator') {
+        if (node.type === 'Operator' && node.links.length>1) {
            // console.log('operator', node.value)
             //gather all the parameter nodes first if it is a constant (number node)
             const params: number[] = [];

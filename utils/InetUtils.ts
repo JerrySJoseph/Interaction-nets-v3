@@ -1,13 +1,12 @@
 import { cloneDeep } from "lodash";
 import { ResultNode } from "../data/models/arithmeticNodes";
 import { INet } from "../data/models/InteractionNet";
-import { ILink } from "../data/models/link";
-import { INode } from "../data/models/node";
+import { generateNewNode } from "../data/models/node";
 
 export function reduceInet(iNet: INet): [INet,string[],string[]] {
     const iNetClone = cloneDeep(iNet);
 
-    console.log('calling reduce')
+   
     const nodestoremove: string[] = [];
     const linkstoremove: string[] = [];
 
@@ -54,7 +53,7 @@ export function reduceInet(iNet: INet): [INet,string[],string[]] {
                 console.log('reduced result:', result)
 
                 //create a result node
-                const resultNode = new ResultNode(result);
+                const resultNode = generateNewNode('Result',result);
                 iNetClone.nodes.push(resultNode);
 
             }

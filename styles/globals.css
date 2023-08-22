@@ -17,6 +17,7 @@
   width: 100%;
   position: relative;
   border: solid 1px white;
+  border-radius: 10px;
 }
 
 .level {
@@ -29,7 +30,6 @@
 .node {
   min-width: 50px;
   min-height: 50px;
-
   color: black;
   font-size: large;
   border: solid 3px white;
@@ -40,16 +40,25 @@
   z-index: 2;
 }
 
-.node-operator {
+.node-thumbnail{
+  position: relative;
+  z-index: inherit;
+}
+
+.node-constant {
   border-radius: 50%;
   background-color: coral;
 }
 
-.node-constant {
+.node-operator {
   border-radius: 10px;
   background-color: darkorange
 }
 
+.node-result{
+  border-radius: 10px;
+  background-color: greenyellow
+}
 .link {
   position: 'absolute';
   top: 0;

@@ -1,20 +1,15 @@
 import { LoadingOverlay } from "@mantine/core";
-import { uniqueId } from "lodash";
-import { number } from "prop-types";
 import { createContext, useContext, useEffect, useState } from "react";
 import AppLayout from "../../ui/layouts/applayout/AppLayout";
 import { reduceInet } from "../../utils/InetUtils";
-import { AdditionNode, DivisionnNode, ModuloNode, MultiplicationNode, NumberNode, SubtractionNode } from "../models/arithmeticNodes";
 import { INet } from "../models/InteractionNet";
-import Link, { generateNewLink, ILink } from "../models/link";
-import Node, { generateNewNode, INode } from "../models/node";
+import { generateNewLink, ILink } from "../models/link";
+import { generateNewNode, INode } from "../models/node";
 
 
 interface AppContextProps {
     inet: INet,
-    resultInet:INet,
     links:ILink[];
-    resultlinks:ILink[];
     currentInetIndex: number,
     updateNode:(newNode:INode)=>any,
     addNode:(node:INode)=>any,
@@ -35,8 +30,6 @@ const defaultAppContext: AppContextProps = {
     addNode: function (node: INode) {
         throw new Error("Function not implemented.");
     },
-    resultInet: { nodes: [] },
-    resultlinks: [],
     updateNode: function (newNode: INode) {
         throw new Error("Function not implemented.");
     }
@@ -57,10 +50,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
     const [loading, setLoading] = useState<boolean>(false);
     const [inet, setInet] = useState<INet>({nodes:[]});
-    const [resultInet, setResultInet] = useState<INet>({nodes:[]});
     const [currentIdx, setCurrentIdx] = useState<number>(-1);
     const [links,setLinks]=useState<ILink[]>([]);
-    const [resultLinks,setResultLinks]=useState<ILink[]>([]);
 
 
     useEffect(() => {
@@ -160,8 +151,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
 
     function reduceCurrentInet() {
         const[newInet,linksToremove]=reduceInet(inet);
-        setResultInet({...newInet});
-        setResultLinks([...links.filter(l=>!linksToremove.includes(l.id))])
+        setInet({...newInet});
+        setLinks([...links.filter(l=>!linksToremove.includes(l.id))])
     }
 
     const value: AppContextProps = {
@@ -170,10 +161,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
         currentInetIndex: currentIdx,
         reduceCurrentInet,
         onNodeMoved: onNodeMoved,
-        addNode,
-        resultInet,
+        addNode,        
         updateNode,
-        resultlinks: resultLinks
     };
 
 

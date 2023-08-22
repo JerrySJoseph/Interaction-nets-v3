@@ -12,17 +12,20 @@ export interface INode{
     y:number,
     id:string
     type:NodeType,
+    label:string
     links:ILink[],
+    principal?:ILink
     value:number|Operator
 }
 
 
-export function generateNewNode(type:NodeType,value:Operator|number):INode{
+export function generateNewNode(type:NodeType,value:Operator|number,x:number=Math.random()*500,y:number=Math.random()*500):INode{
     return{
-        x:Math.random()*500,
-        y:Math.random()*500,
+        x,
+        y,
         id:uniqueId(),
         type,
+        label:`Node(${value.toString()})`,
         value,
         links:[]
     }
@@ -42,3 +45,5 @@ export default abstract class Node {
         this.y=y;
     }
 }
+
+
